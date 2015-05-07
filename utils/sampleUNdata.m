@@ -1,4 +1,4 @@
-function [ data_unlabel ] = sampleUNdata( inputpath,width,height,sampleNum,isDICOM )
+function [ data_unlabel ] = sampleUNdata( inputpath,width,height,sampleNum,isDICOM,iShow )
 % evey pictrue get sampleNum rectangle regions --> to train AutoEncoders
 % Just sample data --> no matter the data is pos or neg
 % param: 
@@ -47,9 +47,13 @@ for i = 1:n
     end;
         x = randi([minX,maxX-width],sampleNum,1);
         y = randi([minY,maxY-height],sampleNum,1);
-        for sn = 1:sampleNum
-            data_unlabel(:,:,(j-1)*sampleNum+sn) = im(x(sn):x(sn)+height-1,y(sn):y(sn)+width-1);
-        end     
+        if iShow
+            imshow(im,[]);
+            for sn = 1:sampleNum
+                data_unlabel(:,:,(j-1)*sampleNum+sn) = im(x(sn):x(sn)+height-1,y(sn):y(sn)+width-1);
+                rectangle('Position',[x(sn) y(sn) width height],'edgecolor','b');
+            end 
+        end
         j = j+1;
     end
 end

@@ -32,10 +32,10 @@ function [ output ] = getSelective_search( images)
 % Parameters. Note that this controls the number of hierarchical
 % segmentations which are combined.
 colorTypes = {'Hsv', 'Lab', 'RGI', 'H', 'Intensity'};
-colorType = colorTypes{3};                                  % Single color space for demo
+colorType = colorTypes{3:4};                                  % Single color space for demo
 % Here you specify which similarity functions to use in merging
 simFunctionHandles = {@SSSimColourTextureSizeFillOrig, @SSSimTextureSizeFill, @SSSimBoxFillOrig, @SSSimSize};
-simFunctionHandles = simFunctionHandles(3); % Two different merging strategies
+simFunctionHandles = simFunctionHandles(4); % Two different merging strategies
 
 % Thresholds for the Felzenszwalb and Huttenlocher segmentation algorithm.
 % Note that by default, we set minSize = k, and sigma = 0.8.

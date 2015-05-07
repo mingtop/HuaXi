@@ -41,11 +41,11 @@ end
 % Parameters. Note that this controls the number of hierarchical
 % segmentations which are combined.
 colorTypes = {'Hsv', 'Lab', 'RGI', 'H', 'Intensity'};
-colorType = colorTypes{3}; % Single color space for demo
+colorType = colorTypes{3:4}; % Single color space for demo
 
 % Here you specify which similarity functions to use in merging
 simFunctionHandles = {@SSSimColourTextureSizeFillOrig, @SSSimTextureSizeFill, @SSSimBoxFillOrig, @SSSimSize};
-simFunctionHandles = simFunctionHandles( 1); % Two different merging strategies
+simFunctionHandles = simFunctionHandles( 4); % Two different merging strategies
 
 % Thresholds for the Felzenszwalb and Huttenlocher segmentation algorithm.
 % Note that by default, we set minSize = k, and sigma = 0.8.
@@ -63,24 +63,28 @@ im = imread(images{1});
 [boxes blobIndIm blobBoxes hierarchy] = Image2HierarchicalGrouping(im, sigma, k, minSize, colorType, simFunctionHandles);
 boxes = BoxRemoveDuplicates(boxes);
 
-% show recatangle in original image
-    imshow(im);
+% show recatangle in original imag
+
+h1 = imshow(im);
     
 for i = 1: size(boxes,1);
 
 %     if boxes(i,3) - boxes(i,1) < 200
         rectangle('Position',[ boxes(i,2),boxes(i,1),boxes(i,3) - boxes(i,1),boxes(i,4)-boxes(i,2)],'edgecolor','g');
 %     end;
-%     if mod(i,20) == 0
-%         pasue(0.01);
-%     end
+    if mod(i,20) == 0
+        pause();
+        clf ;
+        imshow(im);
+    end
 end
+
 % Show boxes
-% ShowRectsWithinImage(boxes, 5, 5, im);
+ ShowRectsWithinImage(boxes, 5, 5, im);
 
 % Show blobs which result from first similarity function
-hBlobs = RecreateBlobHierarchyIndIm(blobIndIm, blobBoxes, hierarchy{1});
-ShowBlobs(hBlobs, 5, 5, im);
+% hBlobs = RecreateBlobHierarchyIndIm(blobIndIm, blobBoxes, hierarchy{1});
+% ShowBlobs(hBlobs, 5, 5, im);
 
 % show recatangle in original image
 % figure;

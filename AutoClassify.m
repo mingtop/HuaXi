@@ -14,9 +14,9 @@ negNum = 400;
 %% 2. Get Data
 disp('2. load data');
 h = tic;
-data = loadDIData('D:\HuaXiData\DICOM\YUZHANGLI\S44560\S20');
+% data = loadDIData('D:\HuaXiData\DICOM\YUZHANGLI\S44560\S20');
 % data = loadDIData('D:\HuaXiData\sampleData\DICOM');
-% data = loadData('D:\HuaXiData\sampleData\YU ZHANG LI');
+data = loadData('D:\HuaXiData\sampleData\YU ZHANG LI');
 fprintf('load orgin data takes %f sconds.\n',toc(h));
 %% 3.1 Set fracture region by hand -- FIX fracture region
 disp('3. set fix rectangle by 2 central points');
@@ -29,14 +29,14 @@ load ./results/lc
 %% 4. Sample fracture data and negative region data
 th = tic;
 disp('4.1 get unlabel fix rectangle data');
-data_unlabel = sampleUNdata('D:\HuaXiData\sampleData\YU ZHANG LI',width,height,unlabelNum); %set a path
+data_unlabel = sampleUNdata('D:\HuaXiData\sampleData\YU ZHANG LI',width,height,unlabelNum,DEBUG); %set a path
 data_unlabel = normalizeData(data_unlabel);
 % 4.1 can load data on  E:\HuaXiData\sampleData\mat_YUZHANGLI\data_unlabel25-64.mat
 disp('4.2 get negtive fix rectangle data ');
 [dataNP,labelNP] = sampleNPdata2(data,lc,width,height,posNum,negNum,DEBUG);
 dataNP = normalizeData(dataNP); 
 fprintf('* Data processed done in %d seconds\n',toc(th)); 
-close ;
+close;
 
 %% 5. Train autoencoder  ----- later replace by CNN
 % check gradient
