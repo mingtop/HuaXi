@@ -55,8 +55,8 @@ opt.batchSize = 256;
 opt.alpha = 0.02;
 opt.momentum = 0.90;
 opt.threshold = 1e-6;
-optthetaAE = minFuncSGD(@(x,y)AEcost(x,y,inputSize,hiddenSize),theta,data_unlabel,opt);
-save ( './results/optthetaAE_cnn.mat','optthetaAE');
+% optthetaAE = minFuncSGD(@(x,y)AEcost(x,y,inputSize,hiddenSize),theta,data_unlabel,opt);
+% save ( './results/optthetaAE_cnn.mat','optthetaAE');
 load ./results/optthetaAE_cnn ;
 
 figure ; 
@@ -89,9 +89,9 @@ c6Dim = 84;
 %     c3filterDim,c3numFilters,s4poolDim,c5Dim,c6Dim,numClasses);
 theta_cnn = theta;
 % theta_cnn(1:hiddenSize*inputSize) = optthetaAE(1:hiddenSize*inputSize);
-optthetaF = minFunCNNSGD(@(x,y,z)cnnCost(x,y,z,numClasses,c1filterDim,c1numFilters,c3filterDim,c3numFilters,...
-                                s2poolDim,s4poolDim,c5Dim,c6Dim),theta_cnn,dataNP,labelNP,opt);
-save ( './results/optthetaF_cnn.mat','optthetaF');                           
+% optthetaF = minFunCNNSGD(@(x,y,z)cnnCost(x,y,z,numClasses,c1filterDim,c1numFilters,c3filterDim,c3numFilters,...
+%                                 s2poolDim,s4poolDim,c5Dim,c6Dim),theta_cnn,dataNP,labelNP,opt);
+% save ( './results/optthetaF_cnn.mat','optthetaF');                           
 load ./results/optthetaF_cnn ;
 
 

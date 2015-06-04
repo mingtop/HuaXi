@@ -50,7 +50,7 @@ maskedRGBImage(repmat(~BW,[1 1 3])) = 0;
 % subplot(1,2,2);
 % maybe don't need this morphological 
 BW = bwmorph(BW,'open');
-imshow(BW);
+% imshow(BW);
 
 end
 

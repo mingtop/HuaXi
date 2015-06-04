@@ -51,8 +51,8 @@ simFunctionHandles = simFunctionHandles( 4); % Two different merging strategies
 % Note that by default, we set minSize = k, and sigma = 0.8.
 k = 100; % controls size of segments of initial segmentation. 
 minSize = k;
-sigma = 1;
-% sigma = 0.8;
+% sigma = 1;
+sigma = 0.8;
 
 % As an example, use a single image
 % images = {'000015.jpg'};
@@ -65,19 +65,19 @@ boxes = BoxRemoveDuplicates(boxes);
 
 % show recatangle in original imag
 
-h1 = imshow(im);
-    
-for i = 1: size(boxes,1);
-
-%     if boxes(i,3) - boxes(i,1) < 200
-        rectangle('Position',[ boxes(i,2),boxes(i,1),boxes(i,3) - boxes(i,1),boxes(i,4)-boxes(i,2)],'edgecolor','g');
-%     end;
-    if mod(i,20) == 0
-        pause();
-        clf ;
-        imshow(im);
-    end
-end
+% h1 = imshow(im);
+%     
+% for i = 1: size(boxes,1);
+% 
+% %     if boxes(i,3) - boxes(i,1) < 200
+%         rectangle('Position',[ boxes(i,2),boxes(i,1),boxes(i,3) - boxes(i,1),boxes(i,4)-boxes(i,2)],'edgecolor','g');
+% %     end;
+%     if mod(i,20) == 0
+% %         pause();
+%         clf ;
+%         imshow(im);
+%     end
+% end
 
 % Show boxes
  ShowRectsWithinImage(boxes, 5, 5, im);

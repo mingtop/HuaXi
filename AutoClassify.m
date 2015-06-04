@@ -22,7 +22,7 @@ fprintf('load orgin data takes %f sconds.\n',toc(h));
 disp('3. set fix rectangle by 2 central points');
 
 % fracture detection    
-% lc = get_fixROI(data,sampleNum,width,height); 
+lc = get_fixROI(data,sampleNum,width,height); 
 % save('./results/lc.mat','lc');
 load ./results/lc
     

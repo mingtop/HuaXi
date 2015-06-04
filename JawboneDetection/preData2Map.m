@@ -1,10 +1,12 @@
 % function [  ] = preData2Map( inputpath )
-function [  ] = preData2Map( )
+% function [  ] = preData2Map( )
+
 % get the data and learned the map
 %   inputpath = 'D:\HuaXiData\Jawbone'
 %   caseName  =  'cd1'
 %   jpgName = '.jpg'
-inputpath = 'D:\HuaXiData\Jawbone';
+
+inputpath = 'D:\HuaXiData\Jawbone\train';
 addpath(inputpath);
 filePath = dir(inputpath); % filePath = dir('');
 n = length(filePath);
@@ -13,9 +15,9 @@ caseName = cell(caseNum,1);
 j = 1;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % path structure 
-%     D:\HuaXiData\Jawbone\cd1\JPG
-%     D:\HuaXiData\Jawbone\cd1\DICOM
-%     D:\HuaXiData\Jawbone\cd1\MASK
+%     D:\HuaXiData\Jawbone\train\cd1\JPG
+%     D:\HuaXiData\Jawbone\train\cd1\DICOM
+%     D:\HuaXiData\Jawbone\train\cd1\MASK
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 for i = 1:n
@@ -47,9 +49,9 @@ for i = 1:length(caseName)
    % Traverse the images
    k = 1;      % to store the k_indx
    for j = 1: num
-       indxNum = indxNum + 1;
        % trav
        if jpgdir(j).isdir == 0
+           indxNum = indxNum + 1;
            tName = jpgdir(j).name;
            jpgName{k} =  tName ;           
            
@@ -62,28 +64,31 @@ for i = 1:length(caseName)
            maskCell{indxNum} =  maskfullName;
            
            mask = getMask(tfullName);
-           imwrite(mask,maskfullName);
+           imwrite(mask,maskfullName,'jpg');
            
            % show results
-           subplot(1,2,1);
-           im = imread(tfullName);
-           imshow(im,[]);
-           subplot(1,2,2);
-           imshow(mask,[]);
-           pause(0.01);
+%            subplot(1,2,1);
+%            im = imread(tfullName);
+%            imshow(im,[]);
+%            subplot(1,2,2);
+%            imshow(mask,[]);
+%            pause(0.01);
+
            k = k+1;
        end
        
    end
    
-   disp(casepath);
+   fprintf('case %d:  num: %d\n', i, indxNum-1);
+%    disp(casepath);
    
 end
 fclose(fjpg);
 fclose(fmask);
 
-save('jpgLabel',jpgCell);
-save('maskLabel',maskCell);
+save('jpgCell','jpgCell');
+save('maskCell','maskCell');
 
-end
+% end
+
 
