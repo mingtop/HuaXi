@@ -1,3 +1,8 @@
-# HuaXi
-This is a Code repository For HuaXi medical data reasearsh
-all rights reserved by AI lab@SCU. 
+# Mandible Segmentation 
+This is a toy code repository for HuaXi medical data project in 2014.
+
+## Overview 
+<img src='project_mandible.jpg'>
+
+## Results
+<img src='mandible_result.gif'>
